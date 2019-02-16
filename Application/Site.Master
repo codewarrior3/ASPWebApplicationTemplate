@@ -12,33 +12,31 @@
 </head>
 <body>
     <!DOCTYPE html>
-    <html>
     <head>
         <title>my layout</title>
     </head>
     <body>
-        <header id="header">
-            <h1>Christopher Peterson</h1>
-        </header>
-        <nav id="nav">
-            <ul>
-                <li><a href="home.aspx">Home</a></li>
-                <li><a href="about.aspx">About</a></li>
-                <li><a href="Contact.aspx">Contact</a></li>
-            </ul>
-        </nav>
+        <form runat="server">
+            <header id="header">
+                <h1>Christopher Peterson</h1>
+            </header>
+            <nav id="nav">
+                <ul>
+                    <li><a href="home.aspx">Home</a></li>
+                    <li><a href="about.aspx">About</a></li>
+                    <li><a href="Contact.aspx">Contact</a></li>
+                </ul>
+            </nav>
 
-        <div id="con">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
+            <div id="con">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
 
-        <footer id="footer">
-            Christopher Peterson
-        </footer>
+            <footer id="footer">
+                Christopher Peterson
+            </footer>
+        </form>
     </body>
-    </html>
-    <form id="form1" runat="server">
-    </form>
-</body>
 </html>
+</body>
