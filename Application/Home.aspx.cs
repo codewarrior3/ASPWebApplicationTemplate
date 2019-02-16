@@ -13,7 +13,7 @@ namespace Application
              DataTable dt = new DataTable();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmdd = new SqlCommand("select * from [PersonAndTheirHobby]", conn))
+                using (SqlCommand cmdd = new SqlCommand("select * from [PersonAndTheirHobby]", conn)) 
                 {
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmdd))
                     {
