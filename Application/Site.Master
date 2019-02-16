@@ -2,10 +2,11 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head runat="server">
     <title>Programming Club</title>
-    <link href="Style.css" rel="stylesheet" />
+    <link href="/Content/Minty.css" rel="stylesheet" />
+    <link href="/Content/Style.css?12345" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -14,7 +15,6 @@
     <html>
     <head>
         <title>my layout</title>
-        <link rel="stylesheet" type="text/css" href="Style.css">
     </head>
     <body>
         <header id="header">

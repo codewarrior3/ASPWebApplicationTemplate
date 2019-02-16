@@ -113,4 +113,3 @@ C:\Users\chris\source\repos\Application\ASPWebApplicationTemplate\Application\ob
 C:\Users\chris\source\repos\Application\ASPWebApplicationTemplate\Application\obj\Debug\Application.csproj.CopyComplete
 C:\Users\chris\source\repos\Application\ASPWebApplicationTemplate\Application\obj\Debug\Application.dll
 C:\Users\chris\source\repos\Application\ASPWebApplicationTemplate\Application\obj\Debug\Application.pdb
-C:\Users\chris\source\repos\Application\ASPWebApplicationTemplate\Application\obj\Debug\Application.csprojAssemblyReference.cache

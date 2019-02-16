@@ -4,4 +4,5 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Home</h1>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </asp:Content>

@@ -70,6 +70,8 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Contact.aspx" />
+    <Content Include="Content\Minty.css" />
+    <Content Include="Content\Style.css" />
     <Content Include="Home.aspx" />
     <Content Include="Style.css" />
     <Content Include="Web.config" />
