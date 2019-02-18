@@ -25,6 +25,7 @@
                     <li><a href="home.aspx">Home</a></li>
                     <li><a href="about.aspx">About</a></li>
                     <li><a href="Contact.aspx">Contact</a></li>
+                    <li><a href="Person.aspx">Person</a></li>
                 </ul>
             </nav>
 
