@@ -54,7 +54,7 @@ namespace Application
             }
         }
 
-        protected void Previous(ref DataTable dtPerson)
+        protected void Previous(ref DataTable dtPerson, Int32 maxID)
         {
             if (!String.IsNullOrEmpty(lblID.Text))
             {
@@ -65,7 +65,7 @@ namespace Application
                 }
                 else
                 {
-                    rowId = 2000;
+                    rowId = maxID;
                 }
                 lblID.Text = rowId.ToString();
                 GetPetsonById(rowId);
@@ -74,10 +74,10 @@ namespace Application
             }
         }
 
-        protected void Next(ref DataTable dtPerson)
+        protected void Next(ref DataTable dtPerson, Int32 maxID)
         {
             var parseId = Int32.TryParse(lblID.Text, out var rowId);
-            if (parseId && rowId < 2000)
+            if (parseId && rowId < maxID)
             {
                 rowId += 1;
             }
@@ -94,19 +94,51 @@ namespace Application
         protected void lnkPrev_OnClick(object sender, EventArgs e)
         {
             DataTable dtPerson = new DataTable();
+            Int32 maxID = GetMaxIDFromTable();
             while (dtPerson.Rows.Count == 0)
             {
-                Previous(ref dtPerson);
+                Previous(ref dtPerson, maxID);
             }
         }
 
+        //Loop until the next valid ID is found if max, then start back at 1
         protected void lnkNext_OnClick(object sender, EventArgs e)
         {
             DataTable dtPerson = new DataTable();
+            Int32 maxID = GetMaxIDFromTable();
             while (dtPerson.Rows.Count == 0)
             {
-                Next(ref dtPerson);
+                Next(ref dtPerson, maxID);
             }
+        }
+
+        //Gets the Max ID from Person to see how high to loop.
+        protected Int32 GetMaxIDFromTable()
+        {
+            Int32 maxId = 1;
+
+            DataTable dt = new DataTable();
+            var connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
+
+            using (var conn = new SqlConnection(connectionString))
+            {
+                using (var cmd =
+                    new SqlCommand(
+                        "SELECT MAX(ID) as ID FROM Person", conn))
+                {
+                    using (var adapter = new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(dt);
+                    }
+                }
+            }
+
+            if (dt.Rows.Count > 0 && dt.Columns.Contains("ID"))
+            {
+                bool parseSuccess = Int32.TryParse(dt.Rows[0]["ID"].ToString().Trim(), out maxId);
+            }
+
+            return maxId;
         }
     }
 }
