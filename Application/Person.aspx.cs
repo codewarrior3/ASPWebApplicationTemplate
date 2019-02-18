@@ -2,7 +2,6 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Runtime.Serialization;
 
 namespace Application
 {
@@ -12,12 +11,13 @@ namespace Application
         {
             if (!IsPostBack)
             {
-                DataTable dtPerson = new DataTable();
+                DataTable dtPerson;
+                dtPerson = GetPetsonById(1);
                 SetLabels(ref dtPerson);
             }
         }
 
-        protected DataTable GetPetsonByID(Int32 rowId)
+        protected DataTable GetPetsonById(Int32 rowId)
         {
             DataTable dt = new DataTable();
             var connectionString = ConfigurationManager.ConnectionStrings["connectionString"].ConnectionString;
@@ -54,12 +54,11 @@ namespace Application
             }
         }
 
-        protected void Previous()
+        protected void Previous(ref DataTable dtPerson)
         {
             if (!String.IsNullOrEmpty(lblID.Text))
             {
-                int rowId;
-                var parseId = Int32.TryParse(lblID.Text, out rowId);
+                var parseId = Int32.TryParse(lblID.Text, out var rowId);
                 if (parseId && rowId > 1)
                 {
                     rowId -= 1;
@@ -69,16 +68,15 @@ namespace Application
                     rowId = 2000;
                 }
                 lblID.Text = rowId.ToString();
-                GetPetsonByID(rowId);
-                DataTable dtPerson = GetPetsonByID(rowId);
+                GetPetsonById(rowId);
+                dtPerson = GetPetsonById(rowId);
                 SetLabels(ref dtPerson);
             }
         }
 
-        protected void Next()
+        protected void Next(ref DataTable dtPerson)
         {
-            int rowId;
-            var parseId = Int32.TryParse(lblID.Text, out rowId);
+            var parseId = Int32.TryParse(lblID.Text, out var rowId);
             if (parseId && rowId < 2000)
             {
                 rowId += 1;
@@ -89,18 +87,26 @@ namespace Application
             }
 
             lblID.Text = rowId.ToString();
-            DataTable dtPerson = GetPetsonByID(rowId);
+            dtPerson = GetPetsonById(rowId);
             SetLabels(ref dtPerson);
         }
 
         protected void lnkPrev_OnClick(object sender, EventArgs e)
         {
-            Previous();
+            DataTable dtPerson = new DataTable();
+            while (dtPerson.Rows.Count == 0)
+            {
+                Previous(ref dtPerson);
+            }
         }
 
         protected void lnkNext_OnClick(object sender, EventArgs e)
         {
-            Next();
+            DataTable dtPerson = new DataTable();
+            while (dtPerson.Rows.Count == 0)
+            {
+                Next(ref dtPerson);
+            }
         }
     }
 }
